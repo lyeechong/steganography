@@ -1,0 +1,38 @@
+### Steganography proposal
+
+## Background:
+-insert some background information on what steganography is-
+
+## Goal:
+Create a program which will hide a message within an image so that the image with the hidden message looks the same to the naked eye.
+
+## How it is accomplished:
+By hiding the message in the LSB of each pixel's RGB value, by having the LSB either as 1 or 0 (corresponding to the message, we can hide a message). By only altering the LSB of each pixel, the image still looks the same to the naked eye.
+
+## Details on the assignment:
+The image will be a bitmap, since bitmaps don't use compression and compression tends to obliviate the least significant bits of an image.
+
+The main class is Steganogram.java.
+Graders should be able to run javac *.java and compile your program.
+
+For hiding a secret message inside an image, the program should be run with the following arguments:
+e [input image filename] [the output image filename] [the hidden-message filename]
+
+For example:
+	java Steganogram e inputImage.bmp outputImage.bmp message.txt
+
+
+For revealing a secret message inside an image, the program should run with the following arguments:
+d [the image which has the hidden-message filename] [the revealed message]
+
+For example:
+	java Steganogram d outputImage.bmp outputMessage.txt
+
+
+Have some way of being able to know when the hidden message ends in the image file, like the covert channel assignment. (One good way to signal you're at the end of the hidden message would be to notice the next byte is all zeros).
+
+You can assume the image will have at least as many pixels as the message is large (in terms of bits).
+
+Hints on implementation:
+BufferedImage has ways to get and set a pixel's RGB value.
+BufferedImage.TYPE_INT_RGB is the type of image you would want to use.
